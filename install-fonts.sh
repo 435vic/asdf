@@ -7,4 +7,6 @@ curl -L https://github.com/tonsky/FiraCode/releases/download/1.206/FiraCode_1.20
 unzip ~/tmp/FiraCode_1.206.zip -d ~/tmp/firacode
 sudo cp ~/tmp/firacode/ttf/FiraCode-Retina.ttf /usr/share/fonts/truetype/
 sudo cp ~/tmp/firacode/ttf/FiraCode-Regular.ttf /usr/share/fonts/truetype/
+echo "cleaning up..."
+rm -r ~/tmp/firacode ~/tmp/FiraCode*.zip
 echo "Done!"
