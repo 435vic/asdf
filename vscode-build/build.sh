@@ -3,8 +3,8 @@
 echo "This script will download and build a patched version of VSCode."
 read -r -p "Are you sure to continue? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
-    mkdir -p vscodium_build
-    cd vscodium_build
+    mkdir -p .vscodium_build
+    cd .vscodium_build
     echo "Setting environment variables..."
     export CC=/usr/bin/cc
     export CXX=/usr/bin/c++
@@ -39,7 +39,6 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
         echo "Now building from VSCode version ${version}"
     fi
     
-    cd vscode
     echo "Patching gulpfiles to build on 4 GiB device..."
     sed -i 's|require("gulp-sourcemaps");|{write:()=>gulpUtil.noop(),init:()=>gulpUtil.noop()};|' build/lib/optimize.js
     sed -i 's|--max_old_space_size=[0-9]\+|--max_old_space_size=1700|' package.json
