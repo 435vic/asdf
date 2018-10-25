@@ -40,7 +40,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
   echo "========== Packages and programs =========="
   echo "As always, let's update and upgrade."
   sudo apt-get update
-  sudo apt-get upgrade
+  sudo apt-get -y upgrade
   echo "First, some essential apt packages will be installed."
   echo "File, binwalk, nano, shellcheck and wget will all be installed."
   sudo apt-get install -y wget file binwalk nano shellcheck
