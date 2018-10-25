@@ -67,7 +67,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
   echo "Let's pump your command line UP! First, let's get zsh up and running."
   sudo apt install -y zsh
   echo "Time to add the main ingredient: oh my ZSH!"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's/env zsh -l//')"
   echo "Done. Time to add the spaceship prompt!"
   git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
   ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
