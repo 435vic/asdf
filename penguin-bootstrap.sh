@@ -77,6 +77,8 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
   bash <(curl -fsSL https://435vic.github.io/asdf/firacode.sh)
   sudo wget -O /usr/share/fonts/FiraMonoRegular-Powerline.otf https://github.com/powerline/fonts/raw/master/FiraMono/FuraMono-Regular%20Powerline.otf
   fc-cache -f
+  echo "WE ARE DONE!! To finish, zsh will be launched."
+  env zsh -l
 else
   echo "Ok."
 fi
