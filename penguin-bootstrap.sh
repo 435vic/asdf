@@ -37,6 +37,8 @@ EOF
 echo "Let's bootstrap this container! This script will install many useful tools and programs."
 read -r -p "Are you sure to continue? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
+  echo "First of all, let's set our password."
+  sudo passwd $USER
   echo "========== Packages and programs =========="
   echo "As always, let's update and upgrade."
   sudo apt-get update
@@ -50,6 +52,17 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
   pip3 install pycryptodomex tqdm
   echo "Finally, we'll install terminator."
   sudo apt install -y terminator
+  echo "========== SSH setup =========="
+  echo "The ssh service is disabled by default. We first need to start it..."
+  sudo rm /etc/ssh/sshd_not_to_be_run
+  echo "Next, SSH keys for this device will be generated in a folder called SSHKeys."
+  echo "These keys will provide authentication to ssh into this device."
+  mkdir ~/SSHKeys
+  ssh-keygen -f ~/SSHKeys/penguin -C ""
+  echo "Adding these new keys to authorized_keys..."
+  mkdir -p .ssh
+  cat SSHKeys/penguin.pub  >> ~/.ssh/authorized_keys
+  echo "Done! Copy the keys to the machine you want to ssh from to this device."
   echo "========== Command line interpreter =========="
   echo "Let's pump your command line UP! First, let's get zsh up and running."
   sudo apt install -y zsh
@@ -62,20 +75,8 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
   echo "Done!"
   echo "Now, fira code and fira mono will be installed."
   bash <(curl -fsSL https://435vic.github.io/asdf/firacode.sh)
-  sudo wget -O /usr/share/fonts/FiraMonoRegular-Powerline.otf
-  echo "========== SSH setup =========="
-  echo "The ssh service is disabled by default. We first need to start it..."
-  sudo rm /etc/ssh/sshd_not_to_be_run
-  echo "Next, SSH keys for this device will be generated in a folder called SSHKeys."
-  echo "These keys will provide authentication to ssh into this device."
-  mkdir ~/SSHKeys
-  ssh-keygen -f ~/SSHKeys/penguin -C ""
-  echo "Adding these new keys to authorized_keys..."
-  mkdir -p .ssh
-  cat SSHKeys/penguin.pub  >> ~/.ssh/authorized_keys
-  echo "Done! Copy the keys to the machine you want to ssh from to this device."
-  
-  
+  sudo wget -O /usr/share/fonts/FiraMonoRegular-Powerline.otf https://github.com/powerline/fonts/raw/master/FiraMono/FuraMono-Regular%20Powerline.otf
+  fc-cache -f
 else
   echo "Ok."
 fi
