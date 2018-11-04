@@ -29,9 +29,7 @@ cat << "EOF"
   `Y$$$$P' ,$$.        `Y$$$$$Y'  $$$$$P"'    `Y$$P  ,$$.  .$$.  ,$$. ,$$.
 
 
-
 EOF
-
 # mv product.json product.json.bak cat product.json.bak | jq 'setpath(["extensionsGallery"]; {"serviceUrl": "http://marketplace.visualstudio.com/_apis/public/gallery", "cacheUrl": "https://vscode.blob.core.windows.net/gallery/index", "itemUrl": "https://marketplace.visualstudio.com/items"})' > product.json
 
 echo "Let's bootstrap this container! This script will install many useful tools and programs."
@@ -68,15 +66,6 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
   sudo apt install -y zsh
   echo "Time to add the main ingredient: oh my ZSH!"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed 's/env zsh -l//')"
-  echo "Done. Time to add the spaceship prompt!"
-  zsh << "EOF"
-
-  git clone https://github.com/denysdovhan/spaceship-prompt.git ~/.oh-my-zsh/custom/themes/spaceship-prompt
-  ln -s ln -s "~/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme" "~/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
-
-  EOF
-  sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="spaceship"/' ~/.zshrc
-  echo "Done!"
   echo "Now, fira code and fira mono will be installed."
   bash <(curl -fsSL https://435vic.github.io/asdf/firacode.sh)
   sudo wget -O /usr/share/fonts/FiraMonoRegular-Powerline.otf https://github.com/powerline/fonts/raw/master/FiraMono/FuraMono-Regular%20Powerline.otf
