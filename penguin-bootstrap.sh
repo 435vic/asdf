@@ -42,8 +42,8 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
   sudo apt-get update
   sudo apt-get -y upgrade
   echo "First, some essential apt packages will be installed."
-  echo "File, binwalk, nano, shellcheck and wget will all be installed."
-  sudo apt-get install -y wget file binwalk nano shellcheck
+  echo "File, binwalk, nano, shellcheck, wget and more will be installed."
+  sudo apt-get install -y wget file binwalk nano shellcheck man-db iputils-ping
   echo "Pip3 and tkinter will be installed..."
   sudo apt-get install -y python3-pip python3-tk
   echo "Now, let's install some pip packages."
